@@ -1,0 +1,21 @@
+{% extends 'base2.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+{% endblock %}
+
+{% block title %}Ajout d'un Equipement{% endblock %}
+
+{% block body %}
+<div
+    class="container">
+    <h1>Ajouter un Equipement</h1>
+    {{ form(form)}}
+    <a href="{{ path('app_equipement_liste') }}" class="btn btn-success">Liste des Equipements</a>
+</div>
+
+{% block javascripts %}
+    {{ parent() }}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>{% endblock %}
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %} Connection{% endblock %}
+
+{% block body %}
+
+<header>
+  <form method="post">
+    {% if error %}
+      <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+      <div class="mb-3">
+        You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+      </div>
+    {% endif %}
+
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <label for="inputEmail">Email</label>
+    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus placeholder="Email">
+    <label for="inputPassword">Password</label>
+    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required placeholder="Password">
+
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+    <div class="button-container">
+        <button class="btn btn-lg btn-primary" type="submit">Sign in</button>
+        <a href="{{ path('app_register') }}" class="btn btn-lg btn-primary">inscrivez-vous ici!</a>
+    </div>
+  </form>
+</header>
+
+<style>
+  header {
+    background-image: url('assets/image/img.jpg');
+    background-size: cover;
+    height: 600px;
+    color: white;
+    text-align: center;
+    padding-top: 0px;
+    position: relative;
+  }
+
+  header form {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 25%;
+  }
+
+  /* Ajustez l'opacité du formulaire si nécessaire */
+  /*header form {
+    background-color: rgba(255, 255, 255, 0.8); /* Fond blanc semi-transparent */
+  /*/*/
+</style>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Liste des équipements{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+{% endblock %}
+
+{% block body %}
+    <h1>Liste des équipements</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Numéro</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Description</th>
+                <th scope="col">État</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for equipement in equipmt %}
+                <tr>
+                    <td>{{ equipement.id }}</td>
+                    <td>{{ equipement.nom }}</td>
+                    <td>{{ equipement.description }}</td>
+                    <td>{{ equipement.etat }}</td>
+                    <td>
+                        {% if  is_granted('ROLE_USER') %}
+                        
+                             <a href="{{ path('app_Equipement_delete',{'id':equipement.id})}}" class="btn btn-danger"> Supprimer</a>
+                        {% endif %}
+                            </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('app_ges_equipement') }}" class="btn btn-primary">Ajouter un Equipement</a>
+
+{% endblock %}
