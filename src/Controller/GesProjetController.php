@@ -64,7 +64,25 @@ class GesProjetController extends AbstractController
         ]);
     }
 
+
+    #[Route('/ges/projet/delete/{id}', name: 'app_projet_delete')]
+    public function delete($id,ProjetRepository $repos,EntityManagerInterface $em): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
+        $Projet = $repos->find($id);
+       if(!$Projet)
+       {
+
+       }
+       $em->remove($Projet);
+       $em->flush(); 
+       $this->addFlash('warning','Equipement supprimer avec succes...');
+        return $this->redirectToRoute('app_gest_projet');
+    }
+}
+
     
 
     
-}
+

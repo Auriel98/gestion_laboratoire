@@ -34,9 +34,13 @@ class Projet
     #[ORM\ManyToMany(targetEntity: Chercheur::class, mappedBy: 'chercheurprojet')]
     private Collection $chercheurs;
 
+    #[ORM\ManyToMany(targetEntity: Chercheur::class, inversedBy: 'projets')]
+    private Collection $projetcherche;
+
     public function __construct()
     {
         $this->chercheurs = new ArrayCollection();
+        $this->projetcherche = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -127,6 +131,30 @@ class Projet
         if ($this->chercheurs->removeElement($chercheur)) {
             $chercheur->removeChercheurprojet($this);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Chercheur>
+     */
+    public function getProjetcherche(): Collection
+    {
+        return $this->projetcherche;
+    }
+
+    public function addProjetcherche(Chercheur $projetcherche): static
+    {
+        if (!$this->projetcherche->contains($projetcherche)) {
+            $this->projetcherche->add($projetcherche);
+        }
+
+        return $this;
+    }
+
+    public function removeProjetcherche(Chercheur $projetcherche): static
+    {
+        $this->projetcherche->removeElement($projetcherche);
 
         return $this;
     }
