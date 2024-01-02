@@ -42,9 +42,12 @@ security:
           - { path: ^/ges/publication/liste, roles: ROLE_USER }
           - { path: ^/ges/publication/add, roles: ROLE_USER }
           - { path: ^/ges/equipement, roles: ROLE_ADMIN }
+          - { path: ^app_add_projet, roles: ROLE_ADMIN }
+          - { path: ^app_add_publication, roles: ROLE_ADMIN }
 
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+
+
+
 
 when@test:
     security:

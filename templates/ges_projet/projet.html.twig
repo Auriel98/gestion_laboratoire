@@ -18,7 +18,10 @@
                 <th>Date de fin</th>
                 <th>Etat d'avancement</th>
                 <th>chercheurs</th>
-                <th>Action</th>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <th>Action</th>
+                {% endif %}
+
 
 
             </tr>

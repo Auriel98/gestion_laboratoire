@@ -16,7 +16,10 @@
                 <th scope="col">Nom</th>
                 <th scope="col">Description</th>
                 <th scope="col">État</th>
-                <th scope="col">Actions</th>
+                 {% if is_granted('ROLE_ADMIN') %}
+                    <th scope="col">Actions</th>
+                {% endif %}
+
             </tr>
         </thead>
         <tbody>
